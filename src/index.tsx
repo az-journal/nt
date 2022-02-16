@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './view/App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import LandingPage from './views/LandingPage';
+import Fallback from './components/Fallback';
+
+const App = React.lazy(() => import('./views/App'));
 
 ReactDOM.render(
     <React.StrictMode>
-        <App />
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<LandingPage />} />
+                <Route
+                    path="/app/*"
+                    element={
+                        <Suspense fallback={<Fallback />}>
+                            <App />
+                        </Suspense>
+                    }
+                />
+            </Routes>
+        </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root'),
 );
