@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useMoralis } from 'react-moralis';
+import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -15,6 +16,7 @@ type Props = {
 };
 
 const NFTCard = ({ data, chainId }: Props) => {
+    const navigate = useNavigate();
     const { Moralis } = useMoralis();
     const [metadata, setMetadata] = useState<any>();
     const [progress, setProgress] = useState<number>(-1);
@@ -48,7 +50,7 @@ const NFTCard = ({ data, chainId }: Props) => {
     }, []);
 
     return (
-        <Card sx={{ width: 250 }}>
+        <Card sx={{ width: 250 }} onClick={() => navigate(`/app/nft/${data.nftAddress}/${data.nftId}`)}>
             {metadata && (
                 <CardActionArea>
                     <CardMedia
