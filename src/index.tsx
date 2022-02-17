@@ -3,14 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Fallback from './components/Fallback';
+import { store } from './redux/store';
+import { Provider } from 'react-redux';
 
 const App = React.lazy(() => import('./App'));
 
 ReactDOM.render(
     <React.StrictMode>
-        <Suspense fallback={<Fallback />}>
-            <App />
-        </Suspense>
+        <Provider store={store}>
+            <Suspense fallback={<Fallback />}>
+                <App />
+            </Suspense>
+        </Provider>
     </React.StrictMode>,
     document.getElementById('root'),
 );

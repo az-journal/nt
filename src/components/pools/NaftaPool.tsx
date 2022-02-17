@@ -4,11 +4,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import NFTCard from '../NFTCard';
 
-type Props = {
-    chainId: string;
-};
-
-const NaftaPool = ({ chainId }: Props) => {
+const NaftaPool = () => {
     const NFTPerPage = 21;
     const { Moralis, isInitialized } = useMoralis();
     const [totalNFTCount, setTotalNFTCount] = useState<number>(0);
@@ -40,13 +36,7 @@ const NaftaPool = ({ chainId }: Props) => {
         <Box maxWidth="lg" display="flex" flexWrap="wrap">
             {!isFetching &&
                 data.map((NFT) => {
-                    return (
-                        <NFTCard
-                            key={NFT.attributes.nftAddress + NFT.attributes.nftId}
-                            data={NFT.attributes}
-                            chainId={chainId}
-                        />
-                    );
+                    return <NFTCard key={NFT.attributes.nftAddress + NFT.attributes.nftId} data={NFT.attributes} />;
                 })}
         </Box>
     );

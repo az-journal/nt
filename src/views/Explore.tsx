@@ -8,11 +8,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 
-type Props = {
-    chainId: string;
-};
-
-const Explore = ({ chainId }: Props) => {
+const Explore = () => {
     const [value, setValue] = useState('1');
 
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -31,7 +27,7 @@ const Explore = ({ chainId }: Props) => {
                     </TabList>
                 </Box>
                 <TabPanel value="1">
-                    <NaftaPool chainId={chainId} />
+                    <NaftaPool />
                 </TabPanel>
                 <TabPanel value="2">Item Two</TabPanel>
                 <TabPanel value="3">Item Three</TabPanel>
