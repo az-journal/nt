@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import chainIdReducer from './features/chainIdSlice';
+import totalNFTInPoolReducer from './features/totalNFTInPoolSlice';
 
 export const store = configureStore({
     reducer: {
         chainId: chainIdReducer,
+        totalNFTInPool: totalNFTInPoolReducer,
     },
 });
 
