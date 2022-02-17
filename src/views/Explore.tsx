@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useMoralis, useMoralisQuery } from 'react-moralis';
-import NaftaPool from '../components/NaftaPool';
+import NaftaPool from '../components/pools/NaftaPool';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useMoralis, useMoralisQuery } from 'react-moralis';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import NFTCard from './NFTCard';
+import NFTCard from '../NFTCard';
 
 type Props = {
     chainId: string;
