@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useMoralis, useMoralisQuery } from 'react-moralis';
-import NaftaPool from './NaftaPool';
+import NaftaPool from '../components/NaftaPool';
+import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
@@ -11,7 +12,7 @@ type Props = {
     chainId: string;
 };
 
-const Pools = ({ chainId }: Props) => {
+const Explore = ({ chainId }: Props) => {
     const [value, setValue] = useState('1');
 
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -19,7 +20,7 @@ const Pools = ({ chainId }: Props) => {
     };
 
     return (
-        <Box maxWidth="lg">
+        <Container maxWidth="lg">
             <TabContext value={value}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                     <TabList onChange={handleChange} aria-label="lab API tabs example">
@@ -36,8 +37,8 @@ const Pools = ({ chainId }: Props) => {
                 <TabPanel value="3">Item Three</TabPanel>
                 <TabPanel value="4">Item Four</TabPanel>
             </TabContext>
-        </Box>
+        </Container>
     );
 };
 
-export default Pools;
+export default Explore;

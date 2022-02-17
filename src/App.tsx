@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { MoralisProvider } from 'react-moralis';
-import { Route, Routes } from 'react-router-dom';
-import Pools from '../components/Pools';
-import NFTPage from './NFTPage';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import LandingPage from './views/LandingPage';
+import NFTPage from './views/NFTPage';
+import Explore from './views/Explore';
 
 const App = () => {
     const [chainId, setChainId] = useState<string>('0x1'); // Default MainNet
@@ -35,22 +36,13 @@ const App = () => {
         <>
             {appId && serverUrl && (
                 <MoralisProvider appId={appId} serverUrl={serverUrl} initializeOnMount={true}>
-                    <Routes>
-                        <Route path="/" element={<Pools chainId={chainId} />} />
-
-                        <Route path="/nft/:address/:tokenId" element={<NFTPage />} />
-
-                        {/*<Route
-                            path="/nft/:address/:tokenId/edit"
-                            element={
-                                <OilerContainer maxWidth={'lg'}>
-                                    <NftEdit />
-                                </OilerContainer>
-                            }
-                        />
-
-                        <Route path="/dashboard" element={<Dashboard />} /> */}
-                    </Routes>
+                    <BrowserRouter>
+                        <Routes>
+                            <Route path="/" element={<LandingPage />} />
+                            <Route path="/app" element={<Explore chainId={chainId} />} />
+                            <Route path="/nft/:address/:tokenId" element={<NFTPage />} />
+                        </Routes>
+                    </BrowserRouter>
                 </MoralisProvider>
             )}
         </>

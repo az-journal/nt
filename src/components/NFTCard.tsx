@@ -35,22 +35,11 @@ const NFTCard = ({ data, chainId }: Props) => {
                 setMetadata(tokenIdMetadata);
             }
         };
-
-        // let localMetadata = localStorage.getItem(nft.nftAddress + nft.nftId + chainId);
-        // if (localMetadata != 'undefined') {
-        // console.log('localMetadata', localMetadata);
-        // // setMetadata(JSON.parse(localMetadata);
-        // } else {
-        // console.log('localMetadata', localMetadata);
         getNFTMetadata();
-        // }
-
-        // return () => localStorage.setItem(nft.nftAddress + nft.nftId + chainId, JSON.stringify(metadata));
-        // }, [nft, chainId, isWeb3Enabled]);
     }, []);
 
     return (
-        <Card sx={{ width: 250 }} onClick={() => navigate(`/app/nft/${data.nftAddress}/${data.nftId}`)}>
+        <Card sx={{ width: 250 }} onClick={() => navigate(`/nft/${data.nftAddress}/${data.nftId}`)}>
             {metadata && (
                 <CardActionArea>
                     <CardMedia
