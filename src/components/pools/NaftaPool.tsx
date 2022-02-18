@@ -16,15 +16,6 @@ const NaftaPool = () => {
     const totalNFTInPoolCount = useSelector((state: RootState) => state.totalNFTInPool.value);
     const naftaNFTs = useSelector((state: RootState) => state.naftaPool.naftaNFTs);
     const [page, setPage] = useState<number>(1);
-    const { data, error, isFetching } = useMoralisQuery(
-        'NFT',
-        (query) =>
-            query
-                .descending('block_number')
-                .skip(NFTPerPage * (page - 1))
-                .limit(NFTPerPage),
-        [page],
-    );
 
     useEffect(() => {
         const getTotalNFTCount = async () => {
@@ -32,7 +23,7 @@ const NaftaPool = () => {
             const count = await query.count();
             dispatch(setTotalNFTInPoolCount(count));
         };
-        if (isInitialized) getTotalNFTCount();
+        if (isInitialized && !totalNFTInPoolCount) getTotalNFTCount();
     }, [isInitialized]);
 
     useEffect(() => {
@@ -50,8 +41,8 @@ const NaftaPool = () => {
     }, [isInitialized, NFTPerPage, page]);
 
     useEffect(() => {
-        console.log(data);
-    }, [data]);
+        console.log(naftaNFTs);
+    }, []);
 
     return (
         <>

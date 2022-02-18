@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type TotalNFTInPoolState = {
-    value: number;
+    value: number | null;
 };
 
 const initialState: TotalNFTInPoolState = {
-    value: 0,
+    value: null,
 };
 
 export const totalNFTInPoolSlice = createSlice({
