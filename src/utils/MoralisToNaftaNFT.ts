@@ -1,5 +1,17 @@
 import Moralis from 'moralis/types';
 
+export type NFTMetadata = {
+    token_address: string;
+    token_id: string;
+    contract_type: string;
+    token_uri?: string | undefined;
+    metadata?: string | undefined;
+    synced_at?: string | undefined;
+    amount?: string | undefined;
+    name: string;
+    symbol: string;
+};
+
 export type NaftaNFT = {
     nftAddress: string;
     nftId: string;
@@ -8,7 +20,7 @@ export type NaftaNFT = {
     flashFee: string;
     pricePerBlock: string;
     maxLongtermBlocks: string;
-    metadata: string;
+    metadata: NFTMetadata | null;
     action: string | null;
     confirmed: boolean;
     blockNumber: number;
@@ -33,7 +45,7 @@ const toNaftaNFT = (nft: Moralis.Attributes): NaftaNFT => {
         flashFee: nft.flashFee,
         pricePerBlock: nft.pricePerBlock,
         maxLongtermBlocks: nft.maxLongtermBlocks,
-        metadata: '',
+        metadata: null,
         action: nft.action,
         confirmed: nft.confirmed,
         blockNumber: nft.block_number,
