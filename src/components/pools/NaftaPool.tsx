@@ -38,7 +38,7 @@ const NaftaPool = () => {
             dispatch(addNFTs(naftaNFTs));
         };
         if (isInitialized && naftaNFTs.length == 0) getNFT();
-    }, [isInitialized, NFTPerPage, page]);
+    }, [dispatch, isInitialized, NFTPerPage, page]);
 
     useEffect(() => {
         console.log(naftaNFTs);

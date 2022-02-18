@@ -46,7 +46,7 @@ const NFTCard = ({ data }: Props) => {
             }
         };
         if (!data.metadata) getNFTMetadata();
-    }, []);
+    }, [dispatch]);
 
     return (
         <StyledCard variant="outlined" onClick={() => navigate(`/nft/${data.nftAddress}/${data.nftId}`)}>

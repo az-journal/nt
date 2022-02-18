@@ -9,7 +9,6 @@ import Explore from './views/Explore';
 
 const App = () => {
     const dispatch = useDispatch();
-    const [chainId, setChainId] = useState<string>('0x1'); // Default MainNet
     const [appId, setAppId] = useState<string>();
     const [serverUrl, setServerUrl] = useState<string>();
 
@@ -18,7 +17,6 @@ const App = () => {
             if (window.ethereum) {
                 let chainId = await window.ethereum.request({ method: 'eth_chainId' });
                 if (chainId === '0x4') {
-                    setChainId(chainId);
                     setServerUrl(process.env.REACT_APP_MORALIS_SERVER_URL_RINKEBY);
                     setAppId(process.env.REACT_APP_MORALIS_APP_ID_RINKEBY);
                     dispatch(setRinkeby());
@@ -36,7 +34,7 @@ const App = () => {
             }
         };
         getMoralisCredential();
-    }, []);
+    }, [dispatch]);
 
     return (
         <>
