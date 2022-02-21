@@ -24,7 +24,7 @@ const NaftaPool = () => {
             dispatch(setTotalNFTInPoolCount(count));
         };
         if (isInitialized && !totalNFTInPoolCount) getTotalNFTCount();
-    }, [isInitialized]);
+    }, [dispatch, isInitialized]);
 
     useEffect(() => {
         const getNFT = async () => {
