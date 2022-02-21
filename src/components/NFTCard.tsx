@@ -17,7 +17,9 @@ import Typography from '@mui/material/Typography';
 const StyledCard = styled(Card)({
     width: '250px',
     margin: '10px',
-    borderRadius: '10px',
+    border: '1px solid #fafafa',
+    borderRadius: '20px',
+    backgroundColor: 'transparent',
 });
 
 type Props = {
@@ -64,28 +66,16 @@ const NFTCard = ({ data }: Props) => {
                             {data.metadata.name}
                         </Typography>
                         <Box display="flex" justifyContent="space-between">
-                            <Typography variant="body2" color="text.secondary">
-                                FlashFee
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                {data.flashFee} wei
-                            </Typography>
+                            <Typography variant="body2">FlashFee</Typography>
+                            <Typography variant="body2">{data.flashFee} wei</Typography>
                         </Box>
                         <Box display="flex" justifyContent="space-between">
-                            <Typography variant="body2" color="text.secondary">
-                                LongRent
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                {data.pricePerBlock} wei
-                            </Typography>
+                            <Typography variant="body2">LongRent</Typography>
+                            <Typography variant="body2">{data.pricePerBlock} wei</Typography>
                         </Box>
                         <Box display="flex" justifyContent="space-between">
-                            <Typography variant="body2" color="text.secondary">
-                                Max Longerm
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                {data.maxLongtermBlocks} blocks
-                            </Typography>
+                            <Typography variant="body2">Max Longerm</Typography>
+                            <Typography variant="body2">{data.maxLongtermBlocks} blocks</Typography>
                         </Box>
                     </CardContent>
                 </CardActionArea>

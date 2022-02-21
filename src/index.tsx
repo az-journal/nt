@@ -19,7 +19,10 @@ const theme = createTheme({
         },
     },
     typography: {
-        fontFamily: '"Share Tech", "Roboto", "Helvetica", "Arial", sans-serif',
+        allVariants: {
+            fontFamily: '"Share Tech", "Roboto", "Helvetica", "Arial", sans-serif',
+            color: '#fafafa',
+        },
     },
 });
 

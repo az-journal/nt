@@ -46,13 +46,13 @@ const NaftaPool = () => {
 
     return (
         <>
-            <p>Total NFT Count:{totalNFTInPoolCount}</p>
             <Box maxWidth="lg" display="flex" flexWrap="wrap">
                 {naftaNFTs.length > 0 &&
                     naftaNFTs.map((NFT: NaftaNFT) => {
                         return <NFTCard key={NFT.nftAddress + NFT.nftId} data={NFT} />;
                     })}
             </Box>
+            <p>Total NFT Count:{totalNFTInPoolCount}</p>
         </>
     );
 };

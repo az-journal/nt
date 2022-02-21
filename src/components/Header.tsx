@@ -1,5 +1,6 @@
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import Wallet from './Wallet';
 
 const StyledHeaderBox = styled(Box)({
@@ -18,19 +19,15 @@ const TitleContainer = styled('div')({
     marginRight: 'auto',
 });
 
-const Title = styled('h1')({
-    margin: '0px',
-    color: '#f0f0f0',
-    fontSize: '2.5em',
+const Title = styled(Typography)({
+    fontFamily: 'Roboto',
     letterSpacing: '0.25em',
+    fontWeight: '600',
     filter: 'drop-shadow(0px 5px 0px RGBA(0, 0, 0, 0.5))',
 });
 
-const SubTitle = styled('h3')({
-    margin: '0px',
-    color: '#f0f0f0',
+const SubTitle = styled(Typography)({
     filter: 'drop-shadow(0px 5px 0px RGBA(0, 0, 0, 0.5))',
-    fontFamily: '"Share Tech", sans-serif',
 });
 
 const Header = () => {
@@ -38,8 +35,8 @@ const Header = () => {
         <StyledHeaderBox maxWidth="lg">
             <Logo src="logo192.png" />
             <TitleContainer>
-                <Title>NAFTA</Title>
-                <SubTitle>Flash-owned NFTs</SubTitle>
+                <Title variant="h3">NAFTA</Title>
+                <SubTitle variant="h6">Flash-owned NFTs</SubTitle>
             </TitleContainer>
             <Wallet />
         </StyledHeaderBox>
