@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import Wallet from './Wallet';
 
 const StyledHeaderBox = styled(Box)({
+    marginTop: '20px',
     width: '100%',
     display: 'flex',
     alignItems: 'center',

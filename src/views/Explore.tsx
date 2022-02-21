@@ -29,6 +29,11 @@ const StyledTabPanel = styled(TabPanel)({
     padding: '0px',
 });
 
+const StyledTabList = styled(TabList)({
+    minHeight: '35px',
+    margin: '30px 0px 10px',
+});
+
 const Explore = () => {
     const [value, setValue] = useState('1');
 
@@ -41,7 +46,7 @@ const Explore = () => {
             <Header />
             <TabContext value={value}>
                 <Container maxWidth="lg" disableGutters>
-                    <TabList
+                    <StyledTabList
                         TabIndicatorProps={{
                             style: { display: 'none' },
                         }}
@@ -51,7 +56,7 @@ const Explore = () => {
                         <StyledTab label="User Pool" value="2" />
                         <StyledTab label="Lended" value="3" />
                         <StyledTab label="Borrowed" value="4" />
-                    </TabList>
+                    </StyledTabList>
                 </Container>
                 <StyledTabPanel value="1">
                     <NaftaPool />
