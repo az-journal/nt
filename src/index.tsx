@@ -17,6 +17,9 @@ const theme = createTheme({
         secondary: {
             main: '#E60F73',
         },
+        text: {
+            primary: '#fafafa',
+        },
     },
     typography: {
         allVariants: {

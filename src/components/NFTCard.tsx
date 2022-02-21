@@ -15,7 +15,7 @@ import CardActionArea from '@mui/material/CardActionArea';
 import Typography from '@mui/material/Typography';
 
 const StyledCard = styled(Card)({
-    width: '250px',
+    width: '200px',
     margin: '10px',
     border: '1px solid #fafafa',
     borderRadius: '20px',
