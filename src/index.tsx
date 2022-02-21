@@ -5,15 +5,32 @@ import reportWebVitals from './reportWebVitals';
 import Fallback from './components/Fallback';
 import { store } from './redux/store';
 import { Provider } from 'react-redux';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const App = React.lazy(() => import('./App'));
+
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: '#F0DC46',
+        },
+        secondary: {
+            main: '#E60F73',
+        },
+    },
+    typography: {
+        fontFamily: '"Share Tech", "Roboto", "Helvetica", "Arial", sans-serif',
+    },
+});
 
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
-            <Suspense fallback={<Fallback />}>
-                <App />
-            </Suspense>
+            <ThemeProvider theme={theme}>
+                <Suspense fallback={<Fallback />}>
+                    <App />
+                </Suspense>
+            </ThemeProvider>
         </Provider>
     </React.StrictMode>,
     document.getElementById('root'),
