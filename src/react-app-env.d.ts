@@ -7,6 +7,7 @@ interface JsonRpcRequest {
 
 interface Window {
     ethereum?: {
+        isMetaMask?: boolean;
         request: (req: JsonRpcRequest) => any;
     };
 }
