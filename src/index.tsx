@@ -26,6 +26,9 @@ const theme = createTheme({
             fontFamily: '"Share Tech", "Roboto", "Helvetica", "Arial", sans-serif',
             color: '#fafafa',
         },
+        button: {
+            textTransform: 'none',
+        },
     },
 });
 
