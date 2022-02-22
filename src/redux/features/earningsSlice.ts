@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export type ChainIdState = {
+export type earningState = {
     value: string;
 };
 
-const initialState: ChainIdState = {
+const initialState: earningState = {
     value: '',
 };
 
