@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import chainIdReducer from './features/chainIdSlice';
 import totalNFTInPoolReducer from './features/totalNFTInPoolSlice';
 import naftaPoolReducer from './features/naftaPoolSlice';
+import windowWidthReducer from './features/windowWidthSlice';
 
 export const store = configureStore({
     reducer: {
         chainId: chainIdReducer,
         totalNFTInPool: totalNFTInPoolReducer,
         naftaPool: naftaPoolReducer,
+        windowWidth: windowWidthReducer,
     },
 });
 
