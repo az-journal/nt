@@ -7,20 +7,26 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addMetadataToNFT } from '../redux/features/naftaPoolSlice';
 import { NaftaNFT } from '../utils/MoralisToNaftaNFT';
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
+import Card, { CardProps } from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import CardActionArea from '@mui/material/CardActionArea';
 import Typography from '@mui/material/Typography';
 
-const StyledCard = styled(Card)({
-    width: '200px',
+interface StyledCardProps extends CardProps {
+    windowWidth: number;
+}
+
+const StyledCard = styled(Card)<StyledCardProps>(({ windowWidth }) => ({
+    width: windowWidth > 1220 ? 1200 / 5 - 20 : windowWidth / 5 - 20,
+    minWidth: '180px',
     margin: '10px',
+    boxSizing: 'border-box',
     border: '1px solid #fafafa',
     borderRadius: '20px',
     backgroundColor: 'transparent',
-});
+}));
 
 type Props = {
     data: NaftaNFT;
@@ -30,6 +36,7 @@ const NFTCard = ({ data }: Props) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const chainId = useSelector((state: RootState) => state.chainId.id);
+    const windowWidth = useSelector((state: RootState) => state.windowWidth.value);
     const { Moralis } = useMoralis();
     const [progress, setProgress] = useState<number>(-1);
 
@@ -51,7 +58,12 @@ const NFTCard = ({ data }: Props) => {
     }, [dispatch]);
 
     return (
-        <StyledCard variant="outlined" onClick={() => navigate(`/nft/${data.nftAddress}/${data.nftId}`)}>
+        <StyledCard
+            //@ts-ignore
+            windowWidth={windowWidth}
+            variant="outlined"
+            onClick={() => navigate(`/nft/${data.nftAddress}/${data.nftId}`)}
+        >
             {!!data.metadata && (
                 <CardActionArea>
                     <CardMedia
