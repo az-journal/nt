@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setWindowWidth } from '../redux/features/windowWidthSlice';
 import { styled } from '@mui/material/styles';
 import NaftaPool from '../components/pools/NaftaPool';
 import Box from '@mui/material/Box';
@@ -170,9 +172,21 @@ const CustomSelect = (props: SelectUnstyledProps<number>) => {
 };
 
 const Explore = () => {
+    const hasWindow = typeof window !== 'undefined';
+    const dispatch = useDispatch();
     const [value, setValue] = useState('1');
     const [filterValue, setFilterValue] = useState<number | null>(10);
     const [age, setAge] = useState('');
+
+    useEffect(() => {
+        if (hasWindow) {
+            const handleResize = () => {
+                dispatch(setWindowWidth(window.innerWidth));
+            };
+            window.addEventListener('resize', handleResize);
+            return () => window.removeEventListener('resize', handleResize);
+        }
+    }, [hasWindow, dispatch]);
 
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
         setValue(newValue);
