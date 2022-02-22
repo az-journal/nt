@@ -1,10 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useMoralis, useWeb3ExecuteFunction } from 'react-moralis';
 import { styled } from '@mui/material/styles';
 import { Typography } from '@mui/material';
 import { formatAddr } from '../utils/formatAddr';
 import { getNaftaAddr } from '../utils/getAddresses';
 import { getFormattedWei } from '../utils/weiConverter';
+import { RootState } from '../redux/store';
+import { useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
@@ -36,20 +38,11 @@ const User = styled(Box)(({ theme }) => ({
 }));
 
 const Wallet = () => {
+    const chainId = useSelector((state: RootState) => state.chainId.id);
+    const [earnings, setEarnings] = useState<string>('');
     const isMetamask = window.ethereum?.isMetaMask;
-    const {
-        Moralis,
-        user,
-        authenticate,
-        logout,
-        isAuthenticated,
-        isAuthenticating,
-        web3,
-        enableWeb3,
-        isWeb3Enabled,
-        account,
-        chainId,
-    } = useMoralis();
+    const { Moralis, authenticate, logout, isAuthenticated, isAuthenticating, enableWeb3, isWeb3Enabled, account } =
+        useMoralis();
     const { fetch } = useWeb3ExecuteFunction();
 
     useEffect(() => {
@@ -65,7 +58,7 @@ const Wallet = () => {
                 params: { '': account },
             };
             const earnings = Number(await Moralis.executeFunction(options));
-            console.log(earnings);
+            setEarnings(earnings.toString());
         };
         if (isWeb3Enabled) getEarnings();
     }, [isWeb3Enabled, chainId, account]);
@@ -89,7 +82,7 @@ const Wallet = () => {
             {isAuthenticated && (
                 <Box display="flex" alignItems="center">
                     <Box textAlign="center" mr={2}>
-                        <Typography variant="body2">Earned: {getFormattedWei(Number(10))}</Typography>
+                        <Typography variant="body2">Earned: {getFormattedWei(Number(earnings))}</Typography>
                         <WithdrawButton onClick={handleWithdraw}>
                             <Typography variant="body2">Withdraw</Typography>
                         </WithdrawButton>
