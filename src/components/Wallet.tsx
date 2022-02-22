@@ -43,25 +43,26 @@ const Wallet = () => {
     const isMetamask = window.ethereum?.isMetaMask;
     const { Moralis, authenticate, logout, isAuthenticated, isAuthenticating, enableWeb3, isWeb3Enabled, account } =
         useMoralis();
-    const { fetch } = useWeb3ExecuteFunction();
+    const { fetch, isFetching } = useWeb3ExecuteFunction();
 
     useEffect(() => {
         if (isAuthenticated) enableWeb3();
     }, [isAuthenticated]);
 
     useEffect(() => {
-        const getEarnings = async () => {
-            const options = {
-                abi: NaftaAbi.abi,
-                contractAddress: getNaftaAddr(chainId),
-                functionName: 'earnings',
-                params: { '': account },
-            };
-            const earnings = Number(await Moralis.executeFunction(options));
-            setEarnings(earnings.toString());
-        };
         if (isWeb3Enabled) getEarnings();
-    }, [isWeb3Enabled, chainId, account]);
+    }, [isWeb3Enabled]);
+
+    const getEarnings = async () => {
+        const options = {
+            abi: NaftaAbi.abi,
+            contractAddress: getNaftaAddr(chainId),
+            functionName: 'earnings',
+            params: { '': account },
+        };
+        const earnings = Number(await Moralis.executeFunction(options));
+        setEarnings(earnings.toString());
+    };
 
     const handleWithdraw = () => {
         const options = {
@@ -72,18 +73,13 @@ const Wallet = () => {
         if (isWeb3Enabled) fetch({ params: options });
     };
 
-    // useEffect(() => {
-    //     console.log(Number(earnings));
-    //     if (typeof earnings === 'string') console.log('earnings', earnings);
-    // }, [earnings]);
-
     return (
         <>
             {isAuthenticated && (
                 <Box display="flex" alignItems="center">
                     <Box textAlign="center" mr={2}>
                         <Typography variant="body2">Earned: {getFormattedWei(Number(earnings))}</Typography>
-                        <WithdrawButton onClick={handleWithdraw}>
+                        <WithdrawButton onClick={handleWithdraw} disabled={isFetching}>
                             <Typography variant="body2">Withdraw</Typography>
                         </WithdrawButton>
                     </Box>
